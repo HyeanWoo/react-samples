@@ -45,10 +45,12 @@ export const write = async ctx => {
   const schema = Joi.object().keys({
     title: Joi.string().required(),
     body: Joi.string().required(),
-    tags: Joi.array().items(Joi.string()).required(),
+    tags: Joi.array()
+      .items(Joi.string())
+      .required(),
   });
 
-  const result = schema.validate(ctx.request.body);
+  const result = Joi.validate(ctx.request.body, schema);
   if (result.error) {
     ctx.status = 400; // Bad Request
     ctx.body = result.error;
@@ -71,7 +73,7 @@ export const write = async ctx => {
 };
 
 /*
-  GET /api/posts
+  GET /api/posts?username=&tag=&page=
 */
 export const list = async ctx => {
   const page = parseInt(ctx.query.page || '1', 10);
@@ -81,14 +83,20 @@ export const list = async ctx => {
     return;
   }
 
+  const { tag, username } = ctx.query;
+  const query = {
+    ...(username ? { 'user.username': username } : {}),
+    ...(tag ? { tags: tag } : {}),
+  };
+
   try {
-    const posts = await Post.find()
+    const posts = await Post.find(query)
       .sort({ _id: -1 })
       .limit(10)
       .skip((page - 1) * 10)
       .lean()
       .exec();
-    const postCount = await Post.countDocuments().exec();
+    const postCount = await Post.countDocuments(query).exec();
     ctx.set('Last-Page', Math.ceil(postCount / 10));
     ctx.body = posts.map(post => ({
       ...post,
@@ -113,7 +121,7 @@ export const read = async ctx => {
 export const remove = async ctx => {
   const { id } = ctx.params;
   try {
-    await Post.findByIdAndDelete(id).exec();
+    await Post.findByIdAndRemove(id).exec();
     ctx.status = 204; // No Content (성공은 했지만 응답할 데이터는 없음)
   } catch (e) {
     ctx.throw(500, e); // Internel Server error
@@ -137,7 +145,7 @@ export const update = async ctx => {
     tags: Joi.array().items(Joi.string()),
   });
 
-  const result = schema.validate(ctx.request.body);
+  const result = Joi.validate(ctx.request.body, schema);
   if (result.error) {
     ctx.status = 400; // Bad Request
     ctx.body = result.error;
