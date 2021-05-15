@@ -7,7 +7,7 @@ const { ObjectId } = mongoose.Types;
 export const checkObjectId = (ctx, next) => {
   const { id } = ctx.params;
   if (!ObjectId.isValid(id)) {
-    ctx.status = 400;
+    ctx.status = 400; // Bad Request
     return;
   }
 
@@ -15,12 +15,12 @@ export const checkObjectId = (ctx, next) => {
 };
 
 /*
-POST /api/posts
-{
-  title: '제목',
-  body: '내용',
-  tags: ['태그1', '태그2']
-}
+  POST /api/posts
+  {
+    title: '제목',
+    body: '내용',
+    tags: ['태그1', '태그2']
+  }
 */
 export const write = async ctx => {
   const schema = Joi.object().keys({
@@ -31,7 +31,7 @@ export const write = async ctx => {
 
   const result = schema.validate(ctx.request.body);
   if (result.error) {
-    ctx.status = 400;
+    ctx.status = 400; // Bad Request
     ctx.body = result.error;
     return;
   }
@@ -46,18 +46,18 @@ export const write = async ctx => {
     await post.save();
     ctx.body = post;
   } catch (e) {
-    ctx.throw(500, e);
+    ctx.throw(500, e); // Internel Server error
   }
 };
 
 /*
-GET /api/posts
+  GET /api/posts
 */
 export const list = async ctx => {
   const page = parseInt(ctx.query.page || '1', 10);
 
   if (page < 1) {
-    ctx.status = 400;
+    ctx.status = 400; // Bad Request
     return;
   }
 
@@ -76,47 +76,47 @@ export const list = async ctx => {
         post.body.length < 200 ? post.body : `${post.body.slice(0, 200)}...`,
     }));
   } catch (e) {
-    ctx.throw(500, e);
+    ctx.throw(500, e); // Internel Server error
   }
 };
 
 /*
-GET /api/posts/:id
+  GET /api/posts/:id
 */
 export const read = async ctx => {
   const { id } = ctx.params;
   try {
     const post = await Post.findById(id).exec();
     if (!post) {
-      ctx.status = 404;
+      ctx.status = 404; // Not Found
       return;
     }
     ctx.body = post;
   } catch (e) {
-    ctx.throw(500, e);
+    ctx.throw(500, e); // Internel Server error
   }
 };
 
 /*
-DELETE /api/posts/:id
+  DELETE /api/posts/:id
 */
 export const remove = async ctx => {
   const { id } = ctx.params;
   try {
     await Post.findByIdAndDelete(id).exec();
-    ctx.status = 204;
+    ctx.status = 204; // No Content (성공은 했지만 응답할 데이터는 없음)
   } catch (e) {
-    ctx.throw(500, e);
+    ctx.throw(500, e); // Internel Server error
   }
 };
 
 /*
-PATCH /api/posts/:id
-{
-  title: '수정',
-  body: '수정 내용',
-  tags: ['수정', '태그']
-}
+  PATCH /api/posts/:id
+  {
+    title: '수정',
+    body: '수정 내용',
+    tags: ['수정', '태그']
+  }
 */
 export const update = async ctx => {
   const { id } = ctx.params;
@@ -129,7 +129,7 @@ export const update = async ctx => {
 
   const result = schema.validate(ctx.request.body);
   if (result.error) {
-    ctx.status = 400;
+    ctx.status = 400; // Bad Request
     ctx.body = result.error;
     return;
   }
@@ -139,11 +139,11 @@ export const update = async ctx => {
       new: true, // 업데이트된 데이터 반환 false일 경우 업데이트 전 데이터 반환
     }).exec();
     if (!post) {
-      ctx.status = 404;
+      ctx.status = 404; // Not Found
       return;
     }
     ctx.body = post;
   } catch (e) {
-    ctx.throw(500, e);
+    ctx.throw(500, e); // Internel Server error
   }
 };
