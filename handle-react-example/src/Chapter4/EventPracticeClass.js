@@ -60,5 +60,5 @@ export default EventPractice;
 따라서 bind함수로 컴포넌트의 this를 바인딩해줘야 한다.
 
 메서드를 화살표함수로 선언하는 방법도 있다.
-transform class properties
+(babel의 transform class properties문법임)
 */
