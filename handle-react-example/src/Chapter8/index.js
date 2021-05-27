@@ -3,7 +3,7 @@ import Counter from './Counter';
 import Info from './Info';
 import Average from './Average';
 
-const Index = () => {
+const App = () => {
   const [visible, setVisible] = useState(false);
   return (
     <div>
@@ -21,4 +21,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default App;

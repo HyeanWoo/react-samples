@@ -1,5 +1,5 @@
 import React from 'react';
-import EventPracticeFunction from './Chapter4/EventPracticeFunction';
+import EventPracticeFunction from './EventPracticeFunction';
 
 const App = () => {
   return <EventPracticeFunction />;
