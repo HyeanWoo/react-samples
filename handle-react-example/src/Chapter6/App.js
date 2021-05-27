@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import Root from './Chapter8';
+import IterationSample from './Chapter6/IterationSample';
 
 class App extends Component {
   render() {
-    return <Root />;
+    return <IterationSample />;
   }
 }
 
