@@ -1,0 +1,21 @@
+/* 해당 클래스이름을 가져다 쓸 경우 자동으로 고유하게 만들어준다 */
+
+.wrapper {
+  background: black;
+  padding: 1rem;
+  color: white;
+  font-size: 2rem;
+}
+
+.inverted {
+  color: black;
+  background: white;
+  border: 1px solid black;
+}
+
+/* 평범하게 글로벌로 만들 수도 있다 */
+
+:global .something {
+  font-weight: 800;
+  color: aqua;
+}

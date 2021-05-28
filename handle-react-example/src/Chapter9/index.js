@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import SassComponent from './SassComponent';
+import CSSModule from './CSSModule';
 
 class Index extends Component {
   render() {
     return (
       <div>
-        <SassComponent />
+        <CSSModule />
       </div>
     );
   }
