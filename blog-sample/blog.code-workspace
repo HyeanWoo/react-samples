@@ -1,14 +1,17 @@
 {
-	"folders": [
-		{
-			"path": "blog-backend"
-		},
-		{
-			"path": "blog-frontend"
-		},
-		{
-			"path": "..\\handle-react-example"
-		}
-	],
-	"settings": {}
+  "folders": [
+    {
+      "path": "blog-backend"
+    },
+    {
+      "path": "blog-frontend"
+    },
+    {
+      "path": "..\\handle-react-example\\basic-tutorial"
+    },
+    {
+      "path": "..\\handle-react-example\\todo-app"
+    }
+  ],
+  "settings": {}
 }
