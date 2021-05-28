@@ -25,3 +25,7 @@ class MyComponent extends Component {
 }
 
 export default MyComponent;
+
+/*
+  children으로 <Tag>children</Tag>사이에 있는 값을 가져올 수 있다
+*/
