@@ -5,6 +5,9 @@
 		},
 		{
 			"path": "blog-frontend"
+		},
+		{
+			"path": "..\\handle-react-example"
 		}
 	],
 	"settings": {}

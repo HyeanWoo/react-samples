@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import LifeCycleSample from './Chapter7/LifeCycleSample';
-import ErrorBoundary from './Chapter7/ErrorBoundary';
+import LifeCycleSample from './LifeCycleSample';
+import ErrorBoundary from './ErrorBoundary';
 
 function getRandomColor() {
   return '#' + Math.floor(Math.random() * 1677215).toString(16);
