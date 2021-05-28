@@ -1,9 +1,12 @@
 import React from 'react';
-import styles from '../CSSModule.module.css';
+import classnames from 'classnames/bind';
+import styles from '../CSSModule.module.scss';
+
+const cx = classnames.bind(styles);
 
 const CSSModule = () => {
   return (
-    <div className={[styles.wrapper, styles.inverted].join(' ')}>
+    <div className={cx('wrapper', 'inverted')}>
       Hi, I'm <span className="something">CSS Module!</span>
     </div>
   );
