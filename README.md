@@ -12,9 +12,9 @@
 - reactjs.org 자습서 진행
 
 #### handle-react-example
-- ###### basic tutorial
+- ##### basic tutorial
   - 리액트를 다루는 기술 초중반부 예제 코드 및 챕터 1 ~ 9장 내용 정리
-- ###### todo App
+- ##### todo App
   - 10장 ~ 실습 앱
 
 #### blog-sample
