@@ -11,6 +11,9 @@
     },
     {
       "path": "..\\handle-react-example\\todo-app"
+    },
+    {
+      "path": "..\\handle-react-example\\immer-tutorial"
     }
   ],
   "settings": {}
