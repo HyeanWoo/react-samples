@@ -6,8 +6,6 @@ const About = ({ location }) => {
     ignoreQueryPrefix: true, // 쿼리문 맨앞의 ? 생략
   });
 
-  const showDetail = query.detail === 'true';
-
   return (
     <div>
       <h1>소개</h1>
