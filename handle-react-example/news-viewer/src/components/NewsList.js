@@ -17,7 +17,7 @@ const NewsListBlock = styled.div`
   }
 `;
 
-const NewsList = () => {
+const NewsList = ({ category }) => {
   const [articles, setArticles] = useState(null);
   const [loading, setLoading] = useState(false);
   const [isMaximumRequest, setIsMaximumRequest] = useState(false);
@@ -26,14 +26,14 @@ const NewsList = () => {
     const fetchData = async () => {
       setLoading(true);
       // try {
+      //   const query = category === 'all' ? '' : `&category=${category}`;
       //   const response = await axios.get(
-      //     'https://newsapi.org/v2/top-headlines?country=kr&apiKey=2a0f950e51a54f5c86c981a24e402e71',
+      //     `https://newsapi.org/v2/top-headlines?country=kr${query}&apiKey=2a0f950e51a54f5c86c981a24e402e71`,
       //   );
       //   setArticles(response.data.articles);
       // } catch (e) {
       //   console.log(e.message);
       //   const errorCode = e.message.replace(/^\D+/g, '');
-      //   console.log(Number(errorCode) === 429);
       //   if (Number(errorCode) === 429) {
       //     setIsMaximumRequest(true);
       //   }
@@ -49,7 +49,7 @@ const NewsList = () => {
     };
 
     fetchData();
-  }, []);
+  }, [category]);
 
   if (loading) {
     return <NewsListBlock>불러오는 중...</NewsListBlock>;
