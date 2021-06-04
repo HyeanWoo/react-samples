@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-// import axios from 'axios';
 import NewsItem from './NewsItem';
 import { getArticles } from '../lib/articles';
+import usePromise from '../lib/usePromise';
 
 const NewsListBlock = styled.div`
   box-sizing: border-box;
@@ -18,51 +18,22 @@ const NewsListBlock = styled.div`
 `;
 
 const NewsList = ({ category }) => {
-  const [articles, setArticles] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [isMaximumRequest, setIsMaximumRequest] = useState(false);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      // try {
-      //   const query = category === 'all' ? '' : `&category=${category}`;
-      //   const response = await axios.get(
-      //     `https://newsapi.org/v2/top-headlines?country=kr${query}&apiKey=2a0f950e51a54f5c86c981a24e402e71`,
-      //   );
-      //   setArticles(response.data.articles);
-      // } catch (e) {
-      //   console.log(e.message);
-      //   const errorCode = e.message.replace(/^\D+/g, '');
-      //   if (Number(errorCode) === 429) {
-      //     setIsMaximumRequest(true);
-      //   }
-      // }
-      try {
-        const response = await getArticles(category);
-        setArticles(response.articles);
-      } catch (e) {
-        console.log(e);
-        setIsMaximumRequest(true);
-      }
-      setLoading(false);
-    };
-
-    fetchData();
-  }, [category]);
+  const [loading, response, error] = usePromise(
+    () => getArticles(category),
+    [category],
+  );
 
   if (loading) {
     return <NewsListBlock>불러오는 중...</NewsListBlock>;
   }
-
-  if (isMaximumRequest) {
-    return <NewsListBlock>API 요청량 초과</NewsListBlock>;
-  }
-
-  if (!articles) {
+  if (!response) {
     return null;
   }
+  if (error) {
+    return <NewsListBlock>에러 발생</NewsListBlock>;
+  }
 
+  const { articles } = response;
   return (
     <NewsListBlock>
       {articles.map(article => (
