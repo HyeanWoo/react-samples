@@ -1,6 +1,7 @@
 import React from 'react';
 import ColorBox from './components/ColorBox';
 import SelectColors from './components/SelectColors';
+import SelectColorsClass from './components/SelectColorsClass';
 import { ColorProvider } from './contexts/color';
 
 const App = () => {
@@ -8,6 +9,7 @@ const App = () => {
     <ColorProvider>
       <div>
         <SelectColors />
+        <SelectColorsClass />
         <ColorBox />
       </div>
     </ColorProvider>
