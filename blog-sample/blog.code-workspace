@@ -17,6 +17,12 @@
     },
     {
       "path": "..\\handle-react-example\\router-tutorial"
+    },
+    {
+      "path": "..\\handle-react-example\\news-viewer"
+    },
+    {
+      "path": "..\\handle-react-example\\context-tutorial"
     }
   ],
   "settings": {}
