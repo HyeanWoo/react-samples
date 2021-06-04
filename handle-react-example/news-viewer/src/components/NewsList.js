@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 // import axios from 'axios';
 import NewsItem from './NewsItem';
-import { getAllArticles } from '../lib/articles';
+import { getArticles } from '../lib/articles';
 
 const NewsListBlock = styled.div`
   box-sizing: border-box;
@@ -39,7 +39,7 @@ const NewsList = ({ category }) => {
       //   }
       // }
       try {
-        const response = await getAllArticles();
+        const response = await getArticles(category);
         setArticles(response.articles);
       } catch (e) {
         console.log(e);
