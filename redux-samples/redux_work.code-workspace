@@ -1,0 +1,14 @@
+{
+  "folders": [
+		{
+			"path": "vanilla-redux"
+		},
+		{
+			"path": "Dan_abramov"
+		},
+		{
+			"path": "react-redux-tutorial"
+		}
+	],
+  "settings": {}
+}

@@ -23,9 +23,6 @@
     },
     {
       "path": "..\\handle-react-example\\context-tutorial"
-    },
-    {
-      "path": "..\\redux-samples\\vanilla-redux"
     }
   ],
   "settings": {}
