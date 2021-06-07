@@ -32,7 +32,7 @@ const initialState = {
   ],
 };
 
-function todos(state = initialState, action) {
+const todos = (state = initialState, action) => {
   switch (action.type) {
     case CHANGE_INPUT:
       return {
@@ -54,11 +54,11 @@ function todos(state = initialState, action) {
     case REMOVE:
       return {
         ...state,
-        todos: state.todos.filter(id => id !== action.id),
+        todos: state.todos.filter(todo => todo.id !== action.id),
       };
     default:
       return state;
   }
-}
+};
 
 export default todos;
