@@ -6,8 +6,10 @@ import './index.css';
 import App from './App';
 import rootReducer from './modules';
 import loggerMiddleware from './lib/loggerMuddleware';
+import { createLogger } from 'redux-logger';
 
-const store = createStore(rootReducer, applyMiddleware(loggerMiddleware));
+const logger = createLogger();
+const store = createStore(rootReducer, applyMiddleware(logger));
 
 ReactDOM.render(
   <React.StrictMode>
