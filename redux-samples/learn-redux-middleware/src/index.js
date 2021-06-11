@@ -5,7 +5,6 @@ import { Provider } from 'react-redux';
 import './index.css';
 import App from './App';
 import rootReducer from './modules';
-import loggerMiddleware from './lib/loggerMuddleware';
 import { createLogger } from 'redux-logger';
 
 const logger = createLogger();
