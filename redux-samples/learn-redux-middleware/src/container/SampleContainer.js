@@ -13,8 +13,12 @@ const SampleContainer = ({
 }) => {
   useEffect(() => {
     const fn = async () => {
-      await getPost(1);
-      await getUsers();
+      try {
+        await getPost(1);
+        await getUsers();
+      } catch (e) {
+        console.log(e);
+      }
     };
     fn();
   }, [getPost, getUsers]);
