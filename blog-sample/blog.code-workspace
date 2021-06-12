@@ -5,24 +5,6 @@
     },
     {
       "path": "blog-frontend"
-    },
-    {
-      "path": "..\\handle-react-example\\basic-tutorial"
-    },
-    {
-      "path": "..\\handle-react-example\\todo-app"
-    },
-    {
-      "path": "..\\handle-react-example\\immer-tutorial"
-    },
-    {
-      "path": "..\\handle-react-example\\router-tutorial"
-    },
-    {
-      "path": "..\\handle-react-example\\news-viewer"
-    },
-    {
-      "path": "..\\handle-react-example\\context-tutorial"
     }
   ],
   "settings": {}
