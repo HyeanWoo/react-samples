@@ -3,7 +3,14 @@
 
 ## 각 프로젝트 설명
 #### Redux-Samples
-- redux 개발자 Dan Abrmov의 Fundamentals of Redux Course 강의 수강
+- ##### Dan Abrmov
+  - redux 개발자 Dan Abrmov의 Fundamentals of Redux Course 강의 수강
+- ##### vanilla-redux
+  - 리액트를 다루는 기술 Redux 파트 (바닐라 리덕스)
+- ##### react-redux-tutorial
+  - 리액트를 다루는 기술 Redux 파트 (리액트 리덕스)
+- ##### learn-redux-middleware
+  - 리액트를 다루는 기술 Redux 파트 (리덕스 미들웨어)
 
 #### storybook
 - react를 위한 storybook 튜토리얼 진행
