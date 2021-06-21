@@ -1,0 +1,28 @@
+{
+  "folders": [
+    {
+      "path": "basic-tutorial"
+    },
+    {
+      "path": "todo-app"
+    },
+    {
+      "path": "immer-tutorial"
+    },
+    {
+      "path": "router-tutorial"
+    },
+    {
+      "path": "news-viewer"
+    },
+    {
+      "path": "context-tutorial"
+    },
+    {
+      "path": "splitting-sample"
+    }
+  ],
+  "settings": {
+    "git.ignoreLimitWarning": true
+  }
+}
