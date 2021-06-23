@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 
 const html = ReactDOMServer.renderToString(
-  <div>Hellow Server Side Rendering</div>,
+  <div>Hellow Server Side Rendering!</div>,
 );
 
 console.log(html);
