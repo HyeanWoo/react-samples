@@ -8,8 +8,10 @@ import fs from 'fs';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import rootReducer from './modules';
 import PreloadContext from './lib/PreloadContext';
+import createSagaMiddleware from 'redux-saga';
+import rootReducer, { rootSaga } from './modules';
+import { END } from 'redux-saga';
 
 // asset-manifest.json에서 파일 경로들을 조회
 const manifest = JSON.parse(
@@ -52,7 +54,14 @@ const app = express();
 // 404를 띄우지않고 처리해준다
 const serverRender = async (req, res, next) => {
   const context = {};
-  const store = createStore(rootReducer, applyMiddleware(thunk));
+  const sagaMiddleware = createSagaMiddleware();
+
+  const store = createStore(
+    rootReducer,
+    applyMiddleware(thunk, sagaMiddleware),
+  );
+  const sagaPromise = sagaMiddleware.run(rootSaga).toPromise();
+
   const preloadContext = {
     done: false,
     promises: [],
@@ -72,7 +81,9 @@ const serverRender = async (req, res, next) => {
   // Preloader로 넣어준 함수를 호출하기 위함
   // renderToString보다 빠르기도 하다
   ReactDOMServer.renderToStaticMarkup(jsx);
+  store.dispatch(END);
   try {
+    await sagaPromise;
     await Promise.all(preloadContext.promises);
   } catch (e) {
     return res.status(500);
