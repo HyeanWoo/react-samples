@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import express from 'express';
-import { StaticRouter } from 'react-router';
+import { StaticRouter } from 'react-router-dom';
 import App from './App';
 import path from 'path';
 import fs from 'fs';
@@ -21,7 +21,7 @@ const chunks = Object.keys(manifest.files)
   .map(key => `<script src="${manifest.files[key]}"</script>`) // 스크립트 태그로 변환
   .join('');
 
-function createPage(root) {
+function createPage(root, statScript) {
   return `<!DOCTYPE html>
     <html lang="en">
     <head>
@@ -37,6 +37,7 @@ function createPage(root) {
       <div id="root">
         ${root}
       </div>
+      ${statScript}
       <script src="${manifest.files['runtime-main.js']}"></script>
       ${chunks}
       <script src="${manifest.files['main.js']}"></script>
@@ -67,7 +68,10 @@ const serverRender = async (req, res, next) => {
     </PreloadContext.Provider>
   );
 
-  ReactDOMServer.renderToStaticMarkup(jsx); // renderToStaticMarkup으로 한번 렌더링
+  // renderToStaticMarkup으로 한번 렌더링
+  // Preloader로 넣어준 함수를 호출하기 위함
+  // renderToString보다 빠르기도 하다
+  ReactDOMServer.renderToStaticMarkup(jsx);
   try {
     await Promise.all(preloadContext.promises);
   } catch (e) {
@@ -75,7 +79,11 @@ const serverRender = async (req, res, next) => {
   }
   preloadContext.done = true;
   const root = ReactDOMServer.renderToString(jsx);
-  res.send(createPage(root));
+
+  // JSON을 문자열로 변환하고 악성 스크립트가 실행되는 것을 방치하기 위해 '<' 치환
+  const stateString = JSON.stringify(store.getState()).replace(/</g, '\\u003c');
+  const stateScript = `<script>__PRELOADED_STATE__ = ${stateString}</script>`;
+  res.send(createPage(root, stateScript));
 };
 
 const serve = express.static(path.resolve('./build'), {
