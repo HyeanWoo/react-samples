@@ -8,7 +8,7 @@ import fs from 'fs';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import rootReducer from './modules/index';
+import rootReducer from './modules';
 import PreloadContext from './lib/PreloadContext';
 
 // asset-manifest.json에서 파일 경로들을 조회
@@ -55,7 +55,7 @@ const serverRender = async (req, res, next) => {
   const store = createStore(rootReducer, applyMiddleware(thunk));
   const preloadContext = {
     done: false,
-    promise: [],
+    promises: [],
   };
 
   const jsx = (
