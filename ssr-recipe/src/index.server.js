@@ -13,7 +13,7 @@ import rootReducer, { rootSaga } from './modules';
 import { END } from 'redux-saga';
 import { ChunkExtractor, ChunkExtractorManager } from '@loadable/server';
 
-const statsFile = path.resolve('./build/loadalbe-stats.json');
+const statsFile = path.resolve('./build/loadable-stats.json');
 
 function createPage(root, tags) {
   return `<!DOCTYPE html>
