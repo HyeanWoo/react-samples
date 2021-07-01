@@ -83,7 +83,7 @@ const AuthForm = ({ type, form, onChange, onSubmit }) => {
           />
         )}
         <ButtonWithMarginTop cyan fullWidth>
-          로그인
+          {text}
         </ButtonWithMarginTop>
       </form>
       <Footer>
