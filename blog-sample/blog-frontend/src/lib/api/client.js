@@ -2,6 +2,8 @@ import axios from 'axios';
 
 const client = axios.create();
 
+export default client;
+
 /* axios 인스턴스 생성
   - 글로벌 설정 예시 -
 
@@ -27,5 +29,3 @@ const client = axios.create();
   인스턴스를 만들지 않고도 작업을 할 수 있지만, 인스턴스를 만들지 않을 경우
   애플리케이션에서 발생하는 모든 요청에 대해 설정하게 되므로 다른 API 서버를 사용할 때 곤란한 상황이 발생한다.
 */
-
-export default client;
