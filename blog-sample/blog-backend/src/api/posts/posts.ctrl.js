@@ -45,12 +45,10 @@ export const write = async ctx => {
   const schema = Joi.object().keys({
     title: Joi.string().required(),
     body: Joi.string().required(),
-    tags: Joi.array()
-      .items(Joi.string())
-      .required(),
+    tags: Joi.array().items(Joi.string()).required(),
   });
 
-  const result = Joi.validate(ctx.request.body, schema);
+  const result = schema.validate(ctx.request.body);
   if (result.error) {
     ctx.status = 400; // Bad Request
     ctx.body = result.error;
@@ -145,7 +143,7 @@ export const update = async ctx => {
     tags: Joi.array().items(Joi.string()),
   });
 
-  const result = Joi.validate(ctx.request.body, schema);
+  const result = schema.validate(ctx.request.body);
   if (result.error) {
     ctx.status = 400; // Bad Request
     ctx.body = result.error;
