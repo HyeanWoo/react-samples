@@ -9,10 +9,10 @@ import * as authAPI from '../lib/api/auth';
 const CHANGE_FIELD = 'auth/CHANGE_FIELD';
 const INITIALIZE_FORM = 'auth/INITIALIZE_FORM';
 
-const [REGISTER, REGISTER_SUCCES, REGISTER_FAILURE] =
+const [REGISTER, REGISTER_SUCCESS, REGISTER_FAILURE] =
   createRequestActionTypes('auth/REGISTER');
 
-const [LOGIN, LOGIN_SUCCES, LOGIN_FAILURE] =
+const [LOGIN, LOGIN_SUCCESS, LOGIN_FAILURE] =
   createRequestActionTypes('auth/LOGIN');
 
 export const changeField = createAction(
@@ -35,7 +35,7 @@ export const login = createAction(LOGIN, ({ username, password }) => ({
 
 // create saga
 const registerSaga = createRequestSaga(REGISTER, authAPI.register);
-const loginSaga = createRequestSaga(REGISTER, authAPI.login);
+const loginSaga = createRequestSaga(LOGIN, authAPI.login);
 export function* authSaga() {
   yield takeLatest(REGISTER, registerSaga);
   yield takeLatest(LOGIN, loginSaga);
@@ -66,7 +66,7 @@ const auth = handleActions(
       [form]: initialState[form],
       authError: null,
     }),
-    [REGISTER_SUCCES]: (state, { payload: auth }) => ({
+    [REGISTER_SUCCESS]: (state, { payload: auth }) => ({
       ...state,
       authError: null,
       auth,
@@ -75,7 +75,7 @@ const auth = handleActions(
       ...state,
       authError: error,
     }),
-    [LOGIN_SUCCES]: (state, { payload: auth }) => ({
+    [LOGIN_SUCCESS]: (state, { payload: auth }) => ({
       ...state,
       authError: null,
       auth,
