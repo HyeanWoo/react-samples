@@ -36,3 +36,5 @@
 
 #### blog-sample
 - 리액트를 다루는 기술 후반부 블로그 프로젝트 정리
+- 백엔드: koa
+- DB: MongoDB
