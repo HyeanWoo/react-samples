@@ -27,10 +27,10 @@ const ActionButton = styled.button`
   }
 `;
 
-const PostActionButons = () => {
+const PostActionButons = ({ onEdit }) => {
   return (
     <PostActionButonsBlock>
-      <ActionButton>수정</ActionButton>
+      <ActionButton onClick={onEdit}>수정</ActionButton>
       <ActionButton>삭제</ActionButton>
     </PostActionButonsBlock>
   );
