@@ -1,0 +1,20 @@
+<html lang="ko">
+<body>
+  <span>Total Count: 0</span>
+  <button>click me</button>
+
+  <script>
+    const button = document.querySelector('button');
+    const span = document.querySelector('span');
+
+    let counter = 0;
+
+    function handleClick() {
+      counter += 1;
+      span.innerText = `Total Count: ${counter}`;
+    }
+
+    button.addEventListener('click', handleClick);
+  </script>
+</body>
+</html>
