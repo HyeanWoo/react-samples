@@ -1,27 +1,27 @@
 import { useState, useEffect } from "react";
 
+function Hello() {
+  const [value, setValue] = useState(0);
+
+  const handleValue = () => setValue((prev) => prev + 1);
+
+  useEffect(() => {
+    console.log(`created ${value}`);
+    return () => console.log(`destroyed ${value}`);
+  }, [value]);
+
+  return <h1 onClick={handleValue}>Hello! {value}</h1>;
+}
+
 function App() {
-  const [counter, setCounter] = useState(0);
-  const [keyword, setKeyword] = useState("");
+  const [show, setShow] = useState(true);
 
-  const handleClick = () => setCounter((prev) => prev + 1);
-  const handleChange = ({ target }) => setKeyword(target.value);
-
-  console.log("Rendering");
-
-  useEffect(() => {
-    console.log("Calling API...");
-  }, []);
-
-  useEffect(() => {
-    console.log(`Search for ${keyword}`);
-  }, [keyword]);
+  const handleClick = () => setShow((prev) => !prev);
 
   return (
     <div>
-      <input type="text" name="search" onChange={handleChange} />
-      <h1>{counter}</h1>
-      <button onClick={handleClick}>click me</button>
+      {show ? <Hello /> : null}
+      <button onClick={handleClick}>{show ? "Hide" : "Show"}</button>
     </div>
   );
 }
