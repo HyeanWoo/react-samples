@@ -1,27 +1,36 @@
-import { useState, useEffect } from "react";
-
-function Hello() {
-  const [value, setValue] = useState(0);
-
-  const handleValue = () => setValue((prev) => prev + 1);
-
-  useEffect(() => {
-    console.log(`created ${value}`);
-    return () => console.log(`destroyed ${value}`);
-  }, [value]);
-
-  return <h1 onClick={handleValue}>Hello! {value}</h1>;
-}
+import { useState } from "react";
 
 function App() {
-  const [show, setShow] = useState(true);
+  const [todo, setTodo] = useState("");
+  const [todos, setTodos] = useState([]);
 
-  const handleClick = () => setShow((prev) => !prev);
+  const handleChange = (e) => setTodo(e.target.value);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (todo === "") return;
+
+    setTodos((prevArray) => [...prevArray, todo]);
+    setTodo("");
+  };
 
   return (
     <div>
-      {show ? <Hello /> : null}
-      <button onClick={handleClick}>{show ? "Hide" : "Show"}</button>
+      <h2>My To dos ({todos.length})</h2>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={todo}
+          onChange={handleChange}
+          placeholder="Write your To do"
+        />
+        <button>Add</button>
+      </form>
+      <ul>
+        {todos.map((todoItem, index) => (
+          <li key={index}>{todoItem}</li>
+        ))}
+      </ul>
     </div>
   );
 }
