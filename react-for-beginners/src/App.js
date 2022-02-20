@@ -9,7 +9,7 @@ function App() {
         <Route path="/" exact>
           <Home />
         </Route>
-        <Route path="/movie">
+        <Route path="/movie/:id">
           <About />
         </Route>
       </Switch>
