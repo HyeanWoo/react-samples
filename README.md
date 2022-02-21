@@ -2,6 +2,7 @@
 리액트 연습코드 모음
 
 ## 각 프로젝트 설명
+
 #### Redux-Samples
 - ##### Dan Abrmov
   - redux 개발자 Dan Abrmov의 Fundamentals of Redux Course 강의 수강
@@ -38,3 +39,9 @@
 - 리액트를 다루는 기술 후반부 블로그 프로젝트 정리
 - 백엔드: koa
 - DB: MongoDB
+
+#### ssr-recipe
+- 리액트를 다루는 기술 SSR 맛보기
+
+#### reacr-for-beginners
+- 노마드코더 [ReactJS로 영화 웹 서비스 만들기](https://nomadcoders.co/react-for-beginners/lobby) 실습
