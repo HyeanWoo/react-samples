@@ -2,6 +2,10 @@ import { useRouter } from "next/router";
 
 export default function MoviesID() {
   const router = useRouter();
-  console.log(router);
-  return "detail page";
+
+  return (
+    <div>
+      <h4>{router.query.title || "Loading..."}</h4>
+    </div>
+  );
 }
